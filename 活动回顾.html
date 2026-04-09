@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陇上青年·杭漂记 | 活动回顾</title>
+    <meta name="description" content="陇上青年杭漂记 - 120 天，11 次活动，1 场即将到来的演唱会">
+    <link rel="preconnect" href="https://webapi.amap.com">
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: '9e7903d1ebdd46c7714453e73af10c88'
+        };
+    </script>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=1aa52e8f511fd27a623c970a8d68c741" async></script>
+    <style>
+        :root {
+            --bg-dark: #020305;
+            --bg-card: #0d1117;
+            --bg-card-hover: #161b22;
+            --gold: #ffd700;
+            --gold-light: #ffec8b;
+            --gold-dim: #b8860b;
+            --orange: #ff6b35;
+            --orange-light: #ff8c5a;
+            --purple: #8b5cf6;
+            --purple-light: #a78bfa;
+            --cyan: #06b6d4;
+            --pink: #ec4899;
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --text-muted: #475569;
+            --border-subtle: rgba(255, 215, 0, 0.1);
+            --border-medium: rgba(255, 215, 0, 0.18);
+            --shadow-gold: rgba(255, 215, 0, 0.15);
+            --shadow-orange: rgba(255, 107, 53, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 动态渐变背景 - 增强版 */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 15% 25%, rgba(139, 92, 246, 0.18) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 15%, rgba(255, 107, 53, 0.15) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 75%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 25% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
+                linear-gradient(180deg, #020305 0%, #0a0f1a 45%, #050810 55%, #020305 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 网格背景 - 增强版 */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 215, 0, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        /* 浮动光点 */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, var(--gold) 0%, var(--orange) 50%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 18s infinite ease-in-out;
+            will-change: transform, opacity;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-30px) translateX(15px) scale(1.15); opacity: 0.9; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 用户信息 */
+        .user-profile {
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(20px);
+            padding: 8px 16px;
+            border-radius: 28px;
+            border: 1px solid var(--border-medium);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            object-fit: cover;
+            background: var(--bg-card);
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.05em;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 24px 50px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
+            animation: glow 6s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.06); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 30%, var(--orange) 70%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+            letter-spacing: 0.1em;
+            animation: gradient 12s ease infinite;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero .subtitle {
+            font-size: clamp(0.9rem, 1.7vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 45px;
+            max-width: 680px;
+            line-height: 1.9;
+        }
+
+        .hero .subtitle .line {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .hero .subtitle .highlight {
+            display: inline-block;
+            padding: 3px 12px;
+            background: rgba(255, 215, 0, 0.08);
+            border-radius: 12px;
+            color: var(--gold);
+            margin: 0 3px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* 统计卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 50px;
+            width: 100%;
+            max-width: 680px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.9), rgba(22, 27, 34, 0.7));
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 24px 18px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(15px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 25px var(--shadow-gold);
+        }
+
+        .stat-number-wrapper {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .stat-number {
+            font-size: clamp(1.6rem, 3vw, 2.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-unit {
+            font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+            font-weight: 600;
+            color: var(--gold);
+            opacity: 0.9;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+
+        .countdown-card {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 215, 0, 0.06));
+            border-color: rgba(255, 107, 53, 0.25);
+        }
+
+        /* 滚动提示 - 胶囊样式 */
+        .scroll-hint {
+            margin-top: 40px;
+            display: inline-block;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            animation: bounce 2.5s infinite;
+            padding: 10px 20px;
+            background: rgba(13, 17, 23, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(8px); opacity: 1; }
+        }
+
+        /* 地图区域 */
+        .map-section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--orange-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.95), rgba(22, 27, 34, 0.8));
+            border: 1px solid var(--border-medium);
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--bg-card);
+        }
+
+        /* 横向时间轴 */
+        .timeline-horizontal {
+            margin-top: 30px;
+            padding: 20px 16px;
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.95), rgba(22, 27, 34, 0.85));
+            border: 1px solid var(--border-medium);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-progress-line {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            right: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--gold) 0%, 
+                var(--orange) 25%, 
+                var(--pink) 50%, 
+                var(--purple) 75%, 
+                var(--cyan) 100%);
+            transform: translateY(-50%);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        .timeline-h-inner {
+            display: grid;
+            grid-template-columns: repeat(11, 1fr);
+            gap: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-h-item {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.95), rgba(22, 27, 34, 0.9));
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 10px 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+
+        .timeline-h-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px var(--shadow-gold);
+        }
+
+        .timeline-h-number {
+            display: inline-block;
+            padding: 2px 6px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--bg-dark);
+            border-radius: 5px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .timeline-h-date {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .timeline-h-district {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 时光长廊区域 */
+        .timeline-section {
+            padding: 60px 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.03) 50%, transparent 100%);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 15px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold), var(--orange), var(--pink), var(--purple));
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 0;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            margin-left: 50%;
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.95), rgba(22, 27, 34, 0.9));
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 0;
+            width: calc(100% - 24px);
+            margin: 0 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--gold);
+            transform: scale(1.008);
+            box-shadow: 0 8px 25px var(--shadow-gold);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            border-radius: 50%;
+            border: 2px solid var(--bg-dark);
+            box-shadow: 0 0 10px var(--gold);
+            z-index: 2;
+        }
+
+        .timeline-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-card);
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .timeline-content:hover .timeline-image img {
+            transform: scale(1.05);
+        }
+
+        .timeline-body {
+            padding: 11px;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            gap: 7px;
+        }
+
+        .timeline-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 42px;
+            padding: 3px 7px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--bg-dark);
+            border-radius: 7px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .timeline-date {
+            font-size: 0.7rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .timeline-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .timeline-location {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .timeline-organizer {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-bottom: 7px;
+        }
+
+        .timeline-minimap {
+            width: 100%;
+            height: 65px;
+            border-radius: 7px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+        }
+
+        .timeline-minimap .minimap-label {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.55rem;
+            color: var(--gold);
+            z-index: 10;
+            font-weight: 600;
+        }
+
+        .timeline-status {
+            display: inline-block;
+            padding: 3px 7px;
+            border-radius: 9px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .status-completed {
+            background: rgba(255, 215, 0, 0.12);
+            color: var(--gold);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* 照片墙区域 */
+        .gallery-section {
+            padding: 60px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 11px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, rgba(13, 17, 23, 0.9), rgba(22, 27, 34, 0.7));
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.025) translateY(-2px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 25px var(--shadow-gold);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent 0%, rgba(3, 5, 8, 0.95) 100%);
+            padding: 14px 11px 11px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-number {
+            display: inline-block;
+            padding: 3px 7px;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--bg-dark);
+            border-radius: 6px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .gallery-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .poster-badge {
+            position: absolute;
+            top: 9px;
+            right: 9px;
+            background: linear-gradient(135deg, var(--orange), var(--pink));
+            color: white;
+            padding: 5px 11px;
+            border-radius: 14px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            animation: badgePulse 2s infinite;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+            z-index: 10;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+
+        /* CTA 区域 */
+        .cta-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 215, 0, 0.06));
+            border: 2px solid rgba(255, 107, 53, 0.4);
+            border-radius: 16px;
+            padding: 32px 26px;
+            max-width: 620px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.04), transparent);
+            animation: rotate 40s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-subtitle {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+            padding: 5px 16px;
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            background: rgba(255, 215, 0, 0.05);
+            font-weight: 600;
+        }
+
+        .cta-title {
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            font-weight: 800;
+            margin-bottom: 14px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--orange-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 22px;
+            line-height: 1.7;
+        }
+
+        .cta-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .cta-info-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 7px 12px;
+            border-radius: 7px;
+            border: 1px solid var(--border-subtle);
+            font-size: 0.8rem;
+        }
+
+        .cta-info-icon {
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--orange));
+            color: var(--bg-dark);
+            padding: 13px 34px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 22px var(--shadow-orange);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.035);
+            box-shadow: 0 12px 32px var(--shadow-orange);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-subtle);
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 215, 0, 0.02) 100%);
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            line-height: 2;
+        }
+
+        .footer-text span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 1024px) {
+            .timeline-h-inner {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .user-profile {
+                top: 12px;
+                left: 12px;
+                padding: 6px 12px;
+            }
+
+            .user-avatar {
+                width: 34px;
+                height: 34px;
+            }
+
+            .user-name {
+                font-size: 0.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                margin-left: 0;
+                justify-content: flex-start;
+                padding-left: 35px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+            }
+
+            .cta-card {
+                padding: 28px 20px;
+            }
+
+            .cta-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .timeline-h-inner {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-card);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dim);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- 用户信息 -->
+    <div class="user-profile">
+        <img src="images/avatar.jpg" alt="西西" class="user-avatar">
+        <span class="user-name">西西</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>陇上青年 · 杭漂记</h1>
+            <p class="subtitle">
+                <span class="line">
+                    <span>从陇原到钱塘</span>
+                    <span class="highlight">120 天</span>
+                    <span>的相聚时光</span>
+                </span>
+                <span class="line">
+                    <span class="highlight">11 次</span>
+                    <span>美好回忆</span>
+                    <span>·</span>
+                    <span class="highlight">1 场</span>
+                    <span>即将到来的狂欢</span>
+                </span>
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number" id="daysSinceJoin">--</span>
+                        <span class="stat-unit">天</span>
+                    </div>
+                    <div class="stat-label">加入组织</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number">11</span>
+                        <span class="stat-unit">场</span>
+                    </div>
+                    <div class="stat-label">已参加活动</div>
+                </div>
+                <div class="stat-card countdown-card">
+                    <div class="stat-number-wrapper">
+                        <span class="stat-number" id="countdown">--</span>
+                        <span class="stat-unit">天</span>
+                    </div>
+                    <div class="stat-label">距离演唱会</div>
+                </div>
+            </div>
+
+            <div class="scroll-hint">↓ 向下回顾我们的故事</div>
+        </div>
+    </section>
+
+    <!-- 地图区域 -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg class="section-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 44C24 44 6 30 6 18C6 11.3726 11.3726 6 18 6C21.3137 6 24.3137 7.34286 26.5 9.52058C28.6863 7.34286 31.6863 6 35 6C41.6274 6 47 11.3726 47 18C47 30 29 44 29 44" stroke="url(#mapGradient)" stroke-width="3" stroke-linecap="round" fill="none"/>
+                        <circle cx="24" cy="18" r="5" fill="url(#mapGradient)"/>
+                        <defs>
+                            <linearGradient id="mapGradient" x1="6" y1="6" x2="47" y2="44" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#ffec8b"/>
+                                <stop offset="0.5" stop-color="#ffd700"/>
+                                <stop offset="1" stop-color="#ff8c5a"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    足迹地图
+                </h2>
+                <p class="section-subtitle">12 次活动 · 遍布杭州及周边 7 个区县</p>
+            </div>
+            
+            <div class="map-container">
+                <div id="map"></div>
+                
+                <!-- 横向时间轴 -->
+                <div class="timeline-horizontal">
+                    <div class="timeline-progress-line"></div>
+                    <div class="timeline-h-inner" id="timelineHorizontal">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 时光长廊区域 -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg class="section-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="18" stroke="url(#timeGradient)" stroke-width="3" fill="none"/>
+                        <path d="M24 12V24L32 28" stroke="url(#timeGradient)" stroke-width="3" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="timeGradient" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#ffec8b"/>
+                                <stop offset="0.5" stop-color="#ffd700"/>
+                                <stop offset="1" stop-color="#ff8c5a"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    时光长廊
+                </h2>
+                <p class="section-subtitle">每一次相聚，都是值得珍藏的记忆</p>
+            </div>
+            
+            <div class="timeline" id="timeline">
+            </div>
+        </div>
+    </section>
+
+    <!-- 照片墙区域 -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <svg class="section-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="6" y="8" width="36" height="28" rx="4" stroke="url(#cameraGradient)" stroke-width="3" fill="none"/>
+                        <circle cx="24" cy="22" r="6" stroke="url(#cameraGradient)" stroke-width="3" fill="none"/>
+                        <path d="M14 36L18 30L24 36L30 28L36 36" stroke="url(#cameraGradient)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="cameraGradient" x1="6" y1="8" x2="42" y2="36" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#ffec8b"/>
+                                <stop offset="0.5" stop-color="#ffd700"/>
+                                <stop offset="1" stop-color="#ff8c5a"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    精彩瞬间
+                </h2>
+                <p class="section-subtitle">12 次活动 · 定格美好</p>
+            </div>
+            
+            <div class="gallery-grid" id="gallery">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 区域 -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <div class="cta-subtitle">第 12 次活动</div>
+                    <h2 class="cta-title">🎵 春季演唱会</h2>
+                    <p class="cta-text">
+                        从看流星到听演唱会，从冬至聚到春日狂欢<br>
+                        这是我们的第 12 次相聚，也是新的开始<br>
+                        期待与你一起，在星空下唱响属于我们的歌
+                    </p>
+                    
+                    <div class="cta-info">
+                        <div class="cta-info-item">
+                            <span class="cta-info-icon">📅</span>
+                            <span>2026 年 4 月 18 日</span>
+                        </div>
+                        <div class="cta-info-item">
+                            <span class="cta-info-icon">📍</span>
+                            <span>余杭区 · 溪口村星驰户外营地</span>
+                        </div>
+                        <div class="cta-info-item">
+                            <span class="cta-info-icon">👤</span>
+                            <span>组织者：大成</span>
+                        </div>
+                    </div>
+                    
+                    <button class="cta-button" onclick="alert('🎉 期待与你相聚！请联系组织者大成报名~')">🎤 已报名，编号 No14</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span>陇上青年 · 杭漂记</span> | 2025-2026<br>
+                愿我们在异乡的路上，始终有彼此相伴 🌟
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const activities = [
+            { id: '01', date: '2025-12-14', location: '临安区 · 龙岗镇大九岭', title: '看流星', organizer: '大成', status: 'completed', image: '01.jpg', district: '临安区', lat: 30.24, lng: 119.43, address: '龙岗镇大九岭' },
+            { id: '02', date: '2025-12-21', location: '上城区 · 新风路全福·国潮宴', title: '冬至大聚', organizer: '大成', status: 'completed', image: '02.png', district: '上城区', lat: 30.27, lng: 120.20, address: '新风路全福·国潮宴' },
+            { id: '03', date: '2025-12-29', location: '西湖区 · 晴川街西溪花园', title: '吃牛大', organizer: '大成', status: 'completed', image: '03.jpg', district: '西湖区', lat: 30.26, lng: 120.10, address: '晴川街西溪花园' },
+            { id: '04', date: '2026-01-09', location: '余杭区 · 未来科技城万达店海底捞', title: '海底捞 + 台球', organizer: '八岁', status: 'completed', image: '04.png', district: '余杭区', lat: 30.28, lng: 119.99, address: '未来科技城万达店海底捞' },
+            { id: '05', date: '2026-01-11', location: '余杭区 · 未来科技城海曙小学', title: '篮球 + 乒乓球', organizer: '桃夭', status: 'completed', image: '05.png', district: '余杭区', lat: 30.28, lng: 119.99, address: '未来科技城海曙小学' },
+            { id: '06', date: '2026-01-18', location: '嘉兴海宁市 · 长安镇星星港湾花园', title: '做家乡菜', organizer: '大成', status: 'completed', image: '06.jpg', district: '海宁市', lat: 30.54, lng: 120.47, address: '长安镇星星港湾花园' },
+            { id: '07', date: '2026-01-21', location: '余杭区 · 未来科技城健悦体育馆', title: '羽毛球', organizer: '康康', status: 'completed', image: '07.png', district: '余杭区', lat: 30.28, lng: 119.99, address: '未来科技城健悦体育馆' },
+            { id: '08', date: '2026-03-03', location: '西湖区 · 西溪国家湿地公园', title: '元宵灯会', organizer: 'Regina', status: 'completed', image: '08.jpg', district: '西湖区', lat: 30.26, lng: 120.08, address: '西溪国家湿地公园' },
+            { id: '09', date: '2026-03-11', location: '余杭区 · 巨化大厦持杆者台球', title: '台球 + 牛大', organizer: 'KK', status: 'completed', image: '09.jpg', district: '余杭区', lat: 30.28, lng: 119.99, address: '巨化大厦持杆者台球' },
+            { id: '10', date: '2026-03-14', location: '湖州长兴县 · 太湖 9 号公路', title: '音乐节', organizer: '小小鱼', status: 'completed', image: '10.jpg', district: '长兴县', lat: 31.02, lng: 119.91, address: '太湖 9 号公路' },
+            { id: '11', date: '2026-03-14', location: '钱塘区 · 晓城天地阿尔法量贩式 KTV', title: 'KTV', organizer: '极致', status: 'completed', image: '11.png', district: '钱塘区', lat: 30.25, lng: 120.35, address: '晓城天地阿尔法量贩式 KTV' }
+        ];
+
+        const activity12 = {
+            id: '12',
+            date: '2026-04-18',
+            location: '余杭区 · 溪口村星驰户外营地',
+            title: '春季演唱会',
+            organizer: '大成',
+            status: 'upcoming',
+            image: '12.png',
+            district: '余杭区',
+            lat: 30.28,
+            lng: 119.99,
+            address: '溪口村星驰户外营地'
+        };
+
+        function calculateDays() {
+            const joinDate = new Date('2025-12-10');
+            const concertDate = new Date('2026-04-18');
+            const today = new Date();
+            
+            joinDate.setHours(0, 0, 0, 0);
+            concertDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+            
+            const daysSinceJoin = Math.floor((today - joinDate) / (1000 * 60 * 60 * 24));
+            const daysToConcert = Math.floor((concertDate - today) / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('daysSinceJoin').textContent = daysSinceJoin;
+            document.getElementById('countdown').textContent = daysToConcert;
+        }
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 18 + 's';
+                particle.style.animationDuration = (18 + Math.random() * 12) + 's';
+                fragment.appendChild(particle);
+            }
+            
+            container.appendChild(fragment);
+        }
+
+        function getDistrictStats() {
+            const stats = {};
+            activities.forEach(activity => {
+                const district = activity.district;
+                stats[district] = (stats[district] || 0) + 1;
+            });
+            stats[activity12.district] = (stats[activity12.district] || 0) + 1;
+            return stats;
+        }
+
+        function waitForMap(timeout = 3000) {
+            return new Promise((resolve) => {
+                if (typeof AMap !== 'undefined') {
+                    resolve();
+                    return;
+                }
+                const check = setInterval(() => {
+                    if (typeof AMap !== 'undefined') {
+                        clearInterval(check);
+                        resolve();
+                    }
+                }, 100);
+                setTimeout(() => {
+                    clearInterval(check);
+                    resolve();
+                }, timeout);
+            });
+        }
+
+        function initMap() {
+            if (typeof AMap === 'undefined') return;
+            
+            const map = new AMap.Map('map', {
+                zoom: 9,
+                center: [120.15, 30.28],
+                viewMode: '3D',
+                mapStyle: 'amap://styles/dark',
+                pitch: 45,
+                rotation: 0
+            });
+
+            const districtColors = {
+                '临安区': '#ffd700',
+                '上城区': '#ff8c5a',
+                '西湖区': '#06b6d4',
+                '余杭区': '#8b5cf6',
+                '海宁市': '#ec4899',
+                '长兴县': '#22d3ee',
+                '钱塘区': '#f472b6'
+            };
+
+            const allActivities = [...activities, activity12];
+            const districtStats = getDistrictStats();
+            
+            Object.entries(districtStats).forEach(([district, count]) => {
+                const activity = allActivities.find(a => a.district === district);
+                if (activity) {
+                    const marker = new AMap.Marker({
+                        position: [activity.lng, activity.lat],
+                        title: `${district} - ${count}次活动`,
+                        label: {
+                            content: `<div style="background: linear-gradient(135deg, ${districtColors[district]}, rgba(0,0,0,0.8)); color: white; padding: 5px 10px; border-radius: 14px; font-weight: 700; font-size: 11px; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">${district} · ${count}次</div>`,
+                            position: 'BM',
+                            offset: new AMap.Pixel(0, -6)
+                        },
+                        icon: new AMap.Icon({
+                            size: new AMap.Size(20, 20),
+                            image: `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="${districtColors[district]}" opacity="0.85"/><circle cx="10" cy="10" r="4" fill="white" opacity="0.95"/></svg>`)}`,
+                            imageSize: new AMap.Size(20, 20)
+                        }),
+                        offset: new AMap.Pixel(-10, -10)
+                    });
+                    map.add(marker);
+                }
+            });
+        }
+
+        function renderTimelineHorizontal() {
+            const container = document.getElementById('timelineHorizontal');
+            const fragment = document.createDocumentFragment();
+            
+            activities.forEach(activity => {
+                const item = document.createElement('div');
+                item.className = 'timeline-h-item';
+                item.innerHTML = `
+                    <div class="timeline-h-number">NO.${activity.id}</div>
+                    <div class="timeline-h-date">${activity.date}</div>
+                    <div class="timeline-h-district">${activity.district}</div>
+                `;
+                fragment.appendChild(item);
+            });
+            
+            container.appendChild(fragment);
+        }
+
+        function renderTimeline() {
+            const timeline = document.getElementById('timeline');
+            const reversedActivities = [...activities].reverse();
+            const fragment = document.createDocumentFragment();
+            
+            reversedActivities.forEach((activity, index) => {
+                const item = document.createElement('div');
+                item.className = `timeline-item ${activity.status}`;
+                
+                const placeholder = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360"%3E%3Crect fill="%230d1117" width="640" height="360"/%3E%3C/svg%3E`;
+                
+                item.innerHTML = `
+                    <div class="timeline-content">
+                        <div class="timeline-image">
+                            <img src="images/${activity.image}" alt="${activity.title}" loading="lazy" decoding="async" onerror="this.src='${placeholder}';this.onerror=null;">
+                        </div>
+                        <div class="timeline-body">
+                            <div class="timeline-header">
+                                <div class="timeline-number">NO.${activity.id}</div>
+                                <div class="timeline-date">${activity.date}</div>
+                            </div>
+                            <div class="timeline-title">${activity.title}</div>
+                            <div class="timeline-location">📍 ${activity.location}</div>
+                            <div class="timeline-organizer">👤 ${activity.organizer}</div>
+                            <div class="timeline-minimap" id="minimap-${activity.id}">
+                                <div class="minimap-label">📍 活动地点</div>
+                            </div>
+                            <div class="timeline-status status-completed">✅ 已结束</div>
+                        </div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                `;
+                
+                fragment.appendChild(item);
+                
+                setTimeout(() => {
+                    initMiniMap(activity);
+                }, 800 + index * 100);
+            });
+            
+            timeline.appendChild(fragment);
+        }
+
+        function initMiniMap(activity) {
+            const containerId = `minimap-${activity.id}`;
+            const container = document.getElementById(containerId);
+            if (!container || typeof AMap === 'undefined') return;
+
+            try {
+                const miniMap = new AMap.Map(containerId, {
+                    zoom: 15,
+                    center: [activity.lng, activity.lat],
+                    mapStyle: 'amap://styles/dark',
+                    pitch: 0,
+                    rotation: 0,
+                    scrollWheel: false,
+                    doubleClickZoom: false,
+                    dragEnable: false,
+                    zoomEnable: false
+                });
+
+                const marker = new AMap.Marker({
+                    position: [activity.lng, activity.lat],
+                    title: activity.address,
+                    icon: new AMap.Icon({
+                        size: new AMap.Size(16, 16),
+                        image: `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#ffd700" opacity="0.9"/><circle cx="8" cy="8" r="3" fill="white"/></svg>`)}`,
+                        imageSize: new AMap.Size(16, 16)
+                    }),
+                    offset: new AMap.Pixel(-8, -8)
+                });
+                miniMap.add(marker);
+            } catch (e) {
+                console.warn(`小地图加载失败 ${activity.id}:`, e);
+            }
+        }
+
+        function renderGallery() {
+            const gallery = document.getElementById('gallery');
+            const allImages = [...activities, activity12];
+            const fragment = document.createDocumentFragment();
+            
+            allImages.forEach((activity) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                const placeholder = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"%3E%3Crect fill="%230d1117" width="300" height="300"/%3E%3C/svg%3E`;
+                
+                item.innerHTML = `
+                    <img src="images/${activity.image}" alt="${activity.title}" loading="lazy" decoding="async" onerror="this.src='${placeholder}';this.onerror=null;">
+                    <div class="gallery-overlay">
+                        <div class="gallery-number">NO.${activity.id}</div>
+                        <div class="gallery-title">${activity.title}</div>
+                    </div>
+                    ${activity.id === '12' ? '<div class="poster-badge">🎵 活动预告</div>' : ''}
+                `;
+                
+                fragment.appendChild(item);
+            });
+            
+            gallery.appendChild(fragment);
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            calculateDays();
+            createParticles();
+            renderTimelineHorizontal();
+            
+            waitForMap(3000).then(() => {
+                setTimeout(() => {
+                    initMap();
+                }, 200);
+            });
+            
+            setTimeout(() => {
+                renderTimeline();
+                renderGallery();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
