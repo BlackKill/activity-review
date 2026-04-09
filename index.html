@@ -166,12 +166,6 @@
             width: 500px;
             height: 500px;
             background: radial-gradient(circle, rgba(255, 215, 0, 0.06) 0%, transparent 70%);
-            animation: glow 6s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.06); }
         }
 
         .hero h1 {
@@ -184,12 +178,6 @@
             background-clip: text;
             margin-bottom: 24px;
             letter-spacing: 0.1em;
-            animation: gradient 12s ease infinite;
-        }
-
-        @keyframes gradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .hero .subtitle {
@@ -284,17 +272,11 @@
             color: var(--text-secondary);
             font-size: 0.8rem;
             letter-spacing: 0.08em;
-            animation: bounce 2.5s infinite;
             padding: 10px 20px;
             background: rgba(13, 17, 23, 0.6);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             border: 1px solid var(--border-subtle);
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); opacity: 0.7; }
-            50% { transform: translateY(8px); opacity: 1; }
         }
 
         /* 地图区域 */
@@ -689,14 +671,8 @@
             border-radius: 14px;
             font-size: 0.65rem;
             font-weight: 700;
-            animation: badgePulse 2s infinite;
             box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
             z-index: 10;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.04); }
         }
 
         /* CTA 区域 */
@@ -714,22 +690,6 @@
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-        }
-
-        .cta-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 215, 0, 0.04), transparent);
-            animation: rotate 40s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .cta-content {
