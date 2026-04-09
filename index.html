@@ -6,12 +6,7 @@
     <title>陇上青年·杭漂记 | 活动回顾</title>
     <meta name="description" content="陇上青年杭漂记 - 120 天，11 次活动，1 场即将到来的演唱会">
     <link rel="preconnect" href="https://webapi.amap.com">
-    <script type="text/javascript">
-        window._AMapSecurityConfig = {
-            securityJsCode: '9e7903d1ebdd46c7714453e73af10c88'
-        };
-    </script>
-    <script src="https://webapi.amap.com/maps?v=2.0&key=1aa52e8f511fd27a623c970a8d68c741" async></script>
+    <link rel="dns-prefetch" href="https://webapi.amap.com">
     <style>
         :root {
             --bg-dark: #020305;
@@ -42,7 +37,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            scroll-behavior: auto;
         }
 
         body {
@@ -1192,36 +1187,53 @@
             return stats;
         }
 
-        function waitForMap(timeout = 3000) {
+        function loadMapScript() {
             return new Promise((resolve) => {
+                // 5 秒超时，不阻塞页面
+                const timeout = setTimeout(() => {
+                    console.log('地图加载超时，跳过');
+                    resolve(false);
+                }, 5000);
+                
                 if (typeof AMap !== 'undefined') {
-                    resolve();
+                    clearTimeout(timeout);
+                    resolve(true);
                     return;
                 }
-                const check = setInterval(() => {
-                    if (typeof AMap !== 'undefined') {
-                        clearInterval(check);
-                        resolve();
-                    }
-                }, 100);
-                setTimeout(() => {
-                    clearInterval(check);
-                    resolve();
-                }, timeout);
+                
+                const script = document.createElement('script');
+                script.src = 'https://webapi.amap.com/maps?v=2.0&key=1aa52e8f511fd27a623c970a8d68c741';
+                script.async = true;
+                script.onload = () => {
+                    clearTimeout(timeout);
+                    console.log('地图加载成功');
+                    resolve(true);
+                };
+                script.onerror = () => {
+                    clearTimeout(timeout);
+                    console.warn('地图加载失败，跳过');
+                    resolve(false);
+                };
+                document.head.appendChild(script);
             });
         }
 
-        function initMap() {
-            if (typeof AMap === 'undefined') return;
+        async function initMap() {
+            const loaded = await loadMapScript();
+            if (!loaded || typeof AMap === 'undefined') {
+                document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;font-size:1rem;">🗺️ 地图加载失败，请检查网络连接</div>';
+                return;
+            }
             
-            const map = new AMap.Map('map', {
-                zoom: 9,
-                center: [120.15, 30.28],
-                viewMode: '3D',
-                mapStyle: 'amap://styles/dark',
-                pitch: 45,
-                rotation: 0
-            });
+            try {
+                const map = new AMap.Map('map', {
+                    zoom: 9,
+                    center: [120.15, 30.28],
+                    viewMode: '3D',
+                    mapStyle: 'amap://styles/dark',
+                    pitch: 45,
+                    rotation: 0
+                });
 
             const districtColors = {
                 '临安区': '#ffd700',
@@ -1257,6 +1269,10 @@
                     map.add(marker);
                 }
             });
+            } catch (e) {
+                console.error('地图初始化失败:', e);
+                document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;font-size:1rem;">🗺️ 地图加载失败，请检查网络连接</div>';
+            }
         }
 
         function renderTimelineHorizontal() {
@@ -1323,7 +1339,10 @@
         function initMiniMap(activity) {
             const containerId = `minimap-${activity.id}`;
             const container = document.getElementById(containerId);
-            if (!container || typeof AMap === 'undefined') return;
+            if (!container || typeof AMap === 'undefined') {
+                container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#475569;font-size:0.7rem;">📍</div>';
+                return;
+            }
 
             try {
                 const miniMap = new AMap.Map(containerId, {
@@ -1380,22 +1399,19 @@
             gallery.appendChild(fragment);
         }
 
-        // 初始化
+        // 初始化 - 不阻塞页面
         document.addEventListener('DOMContentLoaded', () => {
+            // 立即渲染
             calculateDays();
             createParticles();
             renderTimelineHorizontal();
+            renderTimeline();
+            renderGallery();
             
-            waitForMap(3000).then(() => {
-                setTimeout(() => {
-                    initMap();
-                }, 200);
-            });
-            
+            // 延迟加载地图（不阻塞）
             setTimeout(() => {
-                renderTimeline();
-                renderGallery();
-            }, 100);
+                initMap();
+            }, 500);
         });
     </script>
 </body>
