@@ -83,7 +83,7 @@
             opacity: 0.8;
         }
 
-        /* 浮动光点 */
+        /* 背景粒子 - 简化版 */
         .bg-particles {
             position: fixed;
             top: 0;
@@ -97,19 +97,11 @@
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             background: radial-gradient(circle, var(--gold) 0%, var(--orange) 50%, transparent 70%);
             border-radius: 50%;
-            opacity: 0.7;
-            animation: float 18s infinite ease-in-out;
-            will-change: transform, opacity;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
-            50% { transform: translateY(-30px) translateX(15px) scale(1.15); opacity: 0.9; }
+            opacity: 0.6;
         }
 
         .container {
@@ -1162,19 +1154,15 @@
 
         function createParticles() {
             const container = document.getElementById('particles');
-            const fragment = document.createDocumentFragment();
+            if (!container) return;
             
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 18 + 's';
-                particle.style.animationDuration = (18 + Math.random() * 12) + 's';
-                fragment.appendChild(particle);
+                container.appendChild(particle);
             }
-            
-            container.appendChild(fragment);
         }
 
         function getDistrictStats() {
@@ -1399,14 +1387,17 @@
             gallery.appendChild(fragment);
         }
 
-        // 初始化 - 不阻塞页面
+        // 初始化 - 极简模式
         document.addEventListener('DOMContentLoaded', () => {
-            // 立即渲染
             calculateDays();
-            createParticles();
             renderTimelineHorizontal();
             renderTimeline();
             renderGallery();
+            
+            // 延迟创建粒子（不阻塞）
+            setTimeout(() => {
+                createParticles();
+            }, 100);
             
             // 延迟加载地图（不阻塞）
             setTimeout(() => {
