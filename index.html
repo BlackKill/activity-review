@@ -75,6 +75,22 @@
             z-index: 0;
         }
 
+        /* 网格纹理 - 增强版 */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 215, 0, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
 
 
         .container {
@@ -477,6 +493,7 @@
             border-top-color: var(--gold);
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            z-index: 1;
         }
 
         @keyframes spin {
@@ -491,10 +508,11 @@
             display: block;
             opacity: 0;
             transition: opacity 0.4s ease;
+            position: relative;
+            z-index: 2;
         }
 
-        .timeline-image img.loaded,
-        .timeline-image img[onerror] {
+        .timeline-image img.loaded {
             opacity: 1;
         }
 
@@ -626,6 +644,16 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
             z-index: 1;
+            pointer-events: none;
+        }
+
+        .gallery-item img.loaded + .gallery-overlay,
+        .gallery-item img:not([class*='loaded']) + .gallery-overlay {
+            opacity: 0;
+        }
+
+        .gallery-item:hover img.loaded + .gallery-overlay {
+            opacity: 1;
         }
 
         .gallery-item:hover {
@@ -900,7 +928,7 @@
 </head>
 <body>
     <div class="bg-gradient"></div>
-    <!-- 移除 bg-grid 和 bg-particles，简化背景 -->
+    <div class="bg-grid"></div>
 
     <!-- 用户信息 -->
     <div class="user-profile">
@@ -1248,7 +1276,7 @@
                 item.innerHTML = `
                     <div class="timeline-content">
                         <div class="timeline-image">
-                            <img src="images/${activity.image}" alt="${activity.title}" onload="this.classList.add('loaded')" onerror="this.style.opacity='1';this.style.background='linear-gradient(135deg, rgba(13,17,23,0.9), rgba(22,27,34,0.8))';" loading="lazy">
+                            <img src="images/${activity.image}" alt="${activity.title}" onload="this.classList.add('loaded');this.previousElementSibling.style.display='none';" onerror="this.style.opacity='1';this.previousElementSibling.style.display='none';" loading="lazy">
                         </div>
                         <div class="timeline-body">
                             <div class="timeline-header">
@@ -1323,7 +1351,7 @@
                 const placeholder = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"%3E%3Crect fill="%230d1117" width="300" height="300"/%3E%3C/svg%3E`;
                 
                 item.innerHTML = `
-                    <img src="images/${activity.image}" alt="${activity.title}" onload="this.classList.add('loaded')" loading="lazy">
+                    <img src="images/${activity.image}" alt="${activity.title}" onload="this.classList.add('loaded');this.previousElementSibling.style.display='none';" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-number">NO.${activity.id}</div>
                         <div class="gallery-title">${activity.title}</div>
