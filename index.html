@@ -225,9 +225,10 @@
         }
 
         .stat-card:hover {
-            transform: translateY(-3px);
+            transform: translateZ(0) translateY(-3px);
             border-color: var(--gold);
             box-shadow: 0 10px 25px var(--shadow-gold);
+            will-change: transform, border-color, box-shadow;
         }
 
         .stat-number-wrapper {
@@ -380,8 +381,9 @@
 
         .timeline-h-item:hover {
             border-color: var(--gold);
-            transform: translateY(-4px);
+            transform: translateZ(0) translateY(-4px);
             box-shadow: 0 8px 20px var(--shadow-gold);
+            will-change: transform, border-color, box-shadow;
         }
 
         .timeline-h-number {
@@ -462,8 +464,9 @@
 
         .timeline-content:hover {
             border-color: var(--gold);
-            transform: scale(1.008);
+            transform: translateZ(0) scale(1.008);
             box-shadow: 0 8px 25px var(--shadow-gold);
+            will-change: transform, border-color;
         }
 
         .timeline-dot {
@@ -495,7 +498,8 @@
         }
 
         .timeline-content:hover .timeline-image img {
-            transform: scale(1.05);
+            transform: translateZ(0) scale(1.05);
+            will-change: transform;
         }
 
         .timeline-body {
@@ -613,9 +617,10 @@
         }
 
         .gallery-item:hover {
-            transform: scale(1.025) translateY(-2px);
+            transform: translateZ(0) scale(1.025) translateY(-2px);
             border-color: var(--gold);
             box-shadow: 0 10px 25px var(--shadow-gold);
+            will-change: transform, border-color, box-shadow;
         }
 
         .gallery-item img {
@@ -626,7 +631,8 @@
         }
 
         .gallery-item:hover img {
-            transform: scale(1.08);
+            transform: translateZ(0) scale(1.08);
+            will-change: transform;
         }
 
         .gallery-overlay {
@@ -767,8 +773,9 @@
         }
 
         .cta-button:hover {
-            transform: scale(1.035);
+            transform: translateZ(0) scale(1.035);
             box-shadow: 0 12px 32px var(--shadow-orange);
+            will-change: transform, box-shadow;
         }
 
         /* Footer */
@@ -896,7 +903,7 @@
             <p class="subtitle">
                 <span class="line">
                     <span>从陇原到钱塘</span>
-                    <span class="highlight">120 天</span>
+                    <span class="highlight" id="daysHighlight">--天</span>
                     <span>的相聚时光</span>
                 </span>
                 <span class="line">
@@ -1110,6 +1117,7 @@
             
             document.getElementById('daysSinceJoin').textContent = daysSinceJoin;
             document.getElementById('countdown').textContent = daysToConcert;
+            document.getElementById('daysHighlight').textContent = daysSinceJoin + '天';
         }
 
         function createParticles() {
