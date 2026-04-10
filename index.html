@@ -52,59 +52,19 @@
             min-width: 320px;
         }
 
-        /* 动态渐变背景 - 微信兼容版 */
+        /* 简化背景 - 微信兼容 */
         .bg-gradient {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             min-height: 100%;
-            background: 
-                radial-gradient(ellipse at 15% 25%, rgba(139, 92, 246, 0.18) 0%, transparent 50%),
-                radial-gradient(ellipse at 85% 15%, rgba(255, 107, 53, 0.15) 0%, transparent 45%),
-                radial-gradient(ellipse at 50% 75%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 25% 85%, rgba(236, 72, 153, 0.12) 0%, transparent 45%),
-                linear-gradient(180deg, #020305 0%, #0a0f1a 45%, #050810 55%, #020305 100%);
+            background: linear-gradient(180deg, #020305 0%, #0a0f1a 100%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* 网格背景 - 微信兼容版 */
-        .bg-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            min-height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 215, 0, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 215, 0, 0.08) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.8;
-        }
 
-        /* 背景粒子 - 微信兼容版 */
-        .bg-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            min-height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: radial-gradient(circle, var(--gold) 0%, var(--orange) 50%, transparent 70%);
-            border-radius: 50%;
-            opacity: 0.6;
-        }
 
         .container {
             max-width: 1200px;
@@ -221,15 +181,11 @@
             border-radius: 14px;
             padding: 24px 18px;
             text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            /* backdrop-filter removed for WeChat compatibility */
+            transition: border-color 0.2s ease;
         }
 
         .stat-card:hover {
-            transform: translateZ(0) translateY(-3px);
             border-color: var(--gold);
-            box-shadow: 0 10px 25px var(--shadow-gold);
-            will-change: transform, border-color, box-shadow;
         }
 
         .stat-number-wrapper {
@@ -376,15 +332,12 @@
             border: 1px solid var(--border-subtle);
             border-radius: 8px;
             padding: 10px 4px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: border-color 0.2s ease;
             text-align: center;
         }
 
         .timeline-h-item:hover {
             border-color: var(--gold);
-            transform: translateZ(0) translateY(-4px);
-            box-shadow: 0 8px 20px var(--shadow-gold);
-            will-change: transform, border-color, box-shadow;
         }
 
         .timeline-h-number {
@@ -460,14 +413,11 @@
             width: calc(100% - 24px);
             margin: 0 12px;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: border-color 0.2s ease;
         }
 
         .timeline-content:hover {
             border-color: var(--gold);
-            transform: translateZ(0) scale(1.008);
-            box-shadow: 0 8px 25px var(--shadow-gold);
-            will-change: transform, border-color;
         }
 
         .timeline-dot {
@@ -614,26 +564,17 @@
             background: linear-gradient(135deg, rgba(13, 17, 23, 0.9), rgba(22, 27, 34, 0.7));
             border: 1px solid var(--border-subtle);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: border-color 0.2s ease;
         }
 
         .gallery-item:hover {
-            transform: translateZ(0) scale(1.025) translateY(-2px);
             border-color: var(--gold);
-            box-shadow: 0 10px 25px var(--shadow-gold);
-            will-change: transform, border-color, box-shadow;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: translateZ(0) scale(1.08);
-            will-change: transform;
         }
 
         .gallery-overlay {
@@ -767,16 +708,14 @@
             font-size: 0.9rem;
             font-weight: 700;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.2s ease;
             border: none;
             cursor: pointer;
             box-shadow: 0 8px 22px var(--shadow-orange);
         }
 
         .cta-button:hover {
-            transform: translateZ(0) scale(1.035);
-            box-shadow: 0 12px 32px var(--shadow-orange);
-            will-change: transform, box-shadow;
+            opacity: 0.9;
         }
 
         /* Footer */
@@ -888,8 +827,7 @@
 </head>
 <body>
     <div class="bg-gradient"></div>
-    <div class="bg-grid"></div>
-    <div class="bg-particles" id="particles"></div>
+    <!-- 移除 bg-grid 和 bg-particles，简化背景 -->
 
     <!-- 用户信息 -->
     <div class="user-profile">
@@ -1121,18 +1059,7 @@
             document.getElementById('daysHighlight').textContent = daysSinceJoin + '天';
         }
 
-        function createParticles() {
-            const container = document.getElementById('particles');
-            if (!container) return;
-            
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                container.appendChild(particle);
-            }
-        }
+        // 移除粒子创建函数，简化
 
         function getDistrictStats() {
             const stats = {};
@@ -1146,31 +1073,15 @@
 
         function loadMapScript() {
             return new Promise((resolve) => {
-                // 5 秒超时，不阻塞页面
-                const timeout = setTimeout(() => {
-                    console.log('地图加载超时，跳过');
-                    resolve(false);
-                }, 5000);
-                
                 if (typeof AMap !== 'undefined') {
-                    clearTimeout(timeout);
                     resolve(true);
                     return;
                 }
-                
                 const script = document.createElement('script');
                 script.src = 'https://webapi.amap.com/maps?v=2.0&key=1aa52e8f511fd27a623c970a8d68c741';
                 script.async = true;
-                script.onload = () => {
-                    clearTimeout(timeout);
-                    console.log('地图加载成功');
-                    resolve(true);
-                };
-                script.onerror = () => {
-                    clearTimeout(timeout);
-                    console.warn('地图加载失败，跳过');
-                    resolve(false);
-                };
+                script.onload = () => resolve(true);
+                script.onerror = () => resolve(false);
                 document.head.appendChild(script);
             });
         }
@@ -1284,15 +1195,12 @@
                 `;
                 
                 fragment.appendChild(item);
-                
-                setTimeout(() => {
-                    initMiniMap(activity);
-                }, 800 + index * 100);
             });
             
             timeline.appendChild(fragment);
         }
 
+        // 移除小地图初始化，简化
         function initMiniMap(activity) {
             const containerId = `minimap-${activity.id}`;
             const container = document.getElementById(containerId);
@@ -1356,22 +1264,14 @@
             gallery.appendChild(fragment);
         }
 
-        // 初始化 - 极简模式
+        // 初始化 - 最简模式
         document.addEventListener('DOMContentLoaded', () => {
             calculateDays();
             renderTimelineHorizontal();
             renderTimeline();
             renderGallery();
-            
-            // 延迟创建粒子（不阻塞）
-            setTimeout(() => {
-                createParticles();
-            }, 100);
-            
-            // 延迟加载地图（不阻塞）
-            setTimeout(() => {
-                initMap();
-            }, 500);
+            // 地图延迟加载
+            setTimeout(() => initMap(), 2000);
         });
     </script>
 </body>
