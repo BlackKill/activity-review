@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
     <title>陇上青年·杭漂记 | 活动回顾</title>
     <meta name="description" content="陇上青年杭漂记 - 120 天，11 次活动，1 场即将到来的演唱会">
     <link rel="preconnect" href="https://webapi.amap.com">
@@ -45,18 +46,19 @@
             background: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: auto;
+            min-width: 320px;
         }
 
-        /* 动态渐变背景 - 增强版 */
+        /* 动态渐变背景 - 微信兼容版 */
         .bg-gradient {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             background: 
                 radial-gradient(ellipse at 15% 25%, rgba(139, 92, 246, 0.18) 0%, transparent 50%),
                 radial-gradient(ellipse at 85% 15%, rgba(255, 107, 53, 0.15) 0%, transparent 45%),
@@ -67,13 +69,13 @@
             z-index: 0;
         }
 
-        /* 网格背景 - 增强版 */
+        /* 网格背景 - 微信兼容版 */
         .bg-grid {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             background-image: 
                 linear-gradient(rgba(255, 215, 0, 0.08) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 215, 0, 0.08) 1px, transparent 1px);
@@ -83,13 +85,13 @@
             opacity: 0.8;
         }
 
-        /* 背景粒子 - 简化版 */
+        /* 背景粒子 - 微信兼容版 */
         .bg-particles {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
@@ -121,8 +123,7 @@
             align-items: center;
             gap: 10px;
             z-index: 100;
-            background: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(13, 17, 23, 0.95);
             padding: 8px 16px;
             border-radius: 28px;
             border: 1px solid var(--border-medium);
@@ -221,7 +222,7 @@
             padding: 24px 18px;
             text-align: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(15px);
+            /* backdrop-filter removed for WeChat compatibility */
         }
 
         .stat-card:hover {
@@ -275,7 +276,7 @@
             letter-spacing: 0.08em;
             padding: 10px 20px;
             background: rgba(13, 17, 23, 0.6);
-            backdrop-filter: blur(10px);
+            /* backdrop-filter removed for WeChat compatibility */
             border-radius: 20px;
             border: 1px solid var(--border-subtle);
         }
@@ -1185,9 +1186,9 @@
                 const map = new AMap.Map('map', {
                     zoom: 9,
                     center: [120.15, 30.28],
-                    viewMode: '3D',
+                    viewMode: '2D',
                     mapStyle: 'amap://styles/dark',
-                    pitch: 45,
+                    pitch: 0,
                     rotation: 0
                 });
 
