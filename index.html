@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
+    <meta name="x5-page-mode" content="app">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="wechat-enable-web-gl" content="true">
     <title>陇上青年·杭漂记 | 活动回顾</title>
     <meta name="description" content="陇上青年杭漂记 - 120 天，11 次活动，1 场即将到来的演唱会">
     <link rel="preconnect" href="https://webapi.amap.com">
@@ -1186,13 +1189,16 @@
                 script.onload = () => resolve(true);
                 script.onerror = () => resolve(false);
                 document.head.appendChild(script);
+                
+                // 微信浏览器 8 秒超时
+                setTimeout(() => resolve(false), 8000);
             });
         }
 
         async function initMap() {
             const loaded = await loadMapScript();
             if (!loaded || typeof AMap === 'undefined') {
-                document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;font-size:1rem;">🗺️ 地图加载失败，请检查网络连接</div>';
+                document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#94a3b8;font-size:1rem;">🗺️ 地图暂不可用</div>';
                 return;
             }
             
